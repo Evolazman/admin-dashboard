@@ -82,7 +82,7 @@ export function WasteLogs() {
             timestamp: data.timestamp instanceof Timestamp ? data.timestamp.toDate() : new Date(),
             user_id: data.user_id || "",
             location: wasteTypeInfo.waste_name || "unknown",
-            garbage_type_sensor: data.garbage_type_sensor || false,
+            garbage_type_sensor: data.garbage_type_sensor ,
             bin_id: data.bin_id || "BIN-" + Math.floor(Math.random() * 1000),
           }
         })
@@ -216,6 +216,7 @@ export function WasteLogs() {
                   <TableHead>User ID</TableHead>
                   <TableHead>Waste Name</TableHead>
                   <TableHead>Bin ID</TableHead>
+                  <TableHead className="text-center">Garbage disposal status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -233,6 +234,14 @@ export function WasteLogs() {
                       <TableCell>{log.user_id}</TableCell>
                       <TableCell>{log.location}</TableCell>
                       <TableCell>{log.bin_id}</TableCell>
+                      <TableCell className="">
+                        {log.garbage_type_sensor == true ? (
+                          <div className=" text-gray-100 w-24 text-center h-6 rounded-full bg-green-600">ทิ้งถูกถัง</div>
+                            ) : (
+                              <div className="text-gray-100 w-24 h-6 text-center rounded-full bg-red-600">ทิ้งผิดถัง</div>
+                            )
+                        }
+                      </TableCell>
                       
                     </TableRow>
                   ))
